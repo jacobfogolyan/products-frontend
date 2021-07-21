@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import 'flexboxgrid2'
 export default {
   name: 'Default',
     data: () => ({

@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import 'flexboxgrid2'
 import ProductCard from '../components/ProductCard.vue'
 import Default from '../layouts/Default.vue'
 
