@@ -19,6 +19,7 @@ export const actions = {
     async getProducts ({ commit }) {
         try {
             const response = await this.$axios.$get('/api/v1/products')
+            commit('clearAllProducts')
             commit('updateAllProducts', response)
         } catch (error) {
             // TODO gracefully handle error
@@ -33,7 +34,6 @@ export const actions = {
             const response = await this.$axios.$delete('/api/v1/product/' + id)
             if (response) {
                 commit('deleteProduct', id)
-                commit('clearAllProducts')
                 dispatch('getProducts')
             }
         } catch (error) {
