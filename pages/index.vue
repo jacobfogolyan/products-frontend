@@ -1,43 +1,29 @@
 <template>
-    <div v-if="getProductStore.length" class="container">
-        <div class="row">
-            <router-link
-                v-for="({ text, route }, index) in buttons"
-                :key="index"
-                :to="route"
-                class="col-xs-4"
-            >
-                {{ text }}
-            </router-link>
+    <default>
+        <div v-if="getProductStore.length" class="container">
+            <div class="row">
+                <ProductCard
+                    v-for="(product, index) in getProductStore"
+                    :key="index"
+                    :product="product"
+                    class="col-xs-4"
+                />
+            </div>
         </div>
-        <div class="row">
-            <ProductCard
-                v-for="(product, index) in getProductStore"
-                :key="index"
-                :product="product"
-                class="col-xs-4"
-            />
-        </div>
-    </div>
+    </default>
 </template>
 
 <script>
 import 'flexboxgrid2'
 import ProductCard from '../components/ProductCard.vue'
+import Default from '../layouts/Default.vue'
 
 export default {
     name: "Home",
     components: {
-        ProductCard
+        ProductCard,
+        Default
     },
-    data: () => ({
-        buttons: [
-            {
-                text: "Create",
-                route: '/create'
-            }
-        ]
-    }),
     computed: {
         getProductStore () {
             return this.$store.state.product.currentProducts
