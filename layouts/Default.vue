@@ -25,10 +25,6 @@ export default {
             {
                 text: 'Home',
                 route: '/'
-            },
-            {
-                text: "Create",
-                route: '/create'
             }
         ]
     }),

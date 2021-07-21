@@ -1,11 +1,11 @@
 <template>
-  <div class="product-card">
+  <div class="product-card" @click="editProduct">
     <div class="content">
-        <div>{{ product.color }}</div>
-        <div>{{ product.name }}</div>
-        <div>{{ product.size }}</div>
-        <div>{{ product.material }}</div>
-        <div>{{ product._id }}</div>
+        <div>Name: {{ product.name }}</div>
+        <div>Size: {{ product.size }}</div>
+        <div>Color: {{ product.color }}</div>
+        <div>Material: {{ product.material }}</div>
+        <div>ID: {{ product._id }}</div>
     </div>
     <CloseButton :product="product" />
   </div>
@@ -27,7 +27,9 @@ export default {
       }
   },
   methods: {
-      testmethod () {
+      editProduct () {
+          const { name, size, color, material, _id } = this.product
+          this.$router.push({ path: '/update', query: { name, size, color, material, _id } })
           // eslint-disable-next-line no-console
           console.log('asdfasdfas')
       }
@@ -40,6 +42,7 @@ export default {
     margin-top: 2rem;
     position: relative;
     display: block;
+    cursor: pointer;
     .content {
         border-radius: 10px;
         border: 5px solid #333;

@@ -1,5 +1,7 @@
+
 export const state = () => ({
-    currentProducts: []
+    currentProducts: [],
+    hasProducts: false
 })
 
 export const mutations = {
@@ -16,15 +18,14 @@ export const mutations = {
     },
     deleteProduct (state, id) {
         state.currentProducts.find(product => product._id === id)
+    },
+    hasProductsTrue (state) {
+        state.hasProducts = true
+    },
+    hasProductsFalse (state) {
+        state.hasProducts = false
     }
 }
-
-// {
-//     "name": "shirt",
-//     "size": 10,
-//     "color": "black",
-//     "material": "cotton"
-// }
 export const actions = {
     async addProduct ({ commit }, product) {
         try {
@@ -41,20 +42,33 @@ export const actions = {
             const response = await this.$axios.$get('/api/v1/products')
             commit('clearAllProducts')
             commit('updateAllProducts', response)
+            commit('hasProductsTrue')
+        } catch (error) {
+            // TODO gracefully handle error
+            // eslint-disable-next-line no-console 
+            console.log(error)
+            commit('hasProductsFalse')
+        }
+    },
+    async deleteProduct({ commit, dispatch }, id) {
+        try {
+            const response = await this.$axios.$delete('/api/v1/product/' + id)
+            if (response) {
+                commit('deleteProduct', id)
+                dispatch('getProducts')
+            }
         } catch (error) {
             // TODO gracefully handle error
             // eslint-disable-next-line no-console 
             console.log(error)
         }
     },
-    async deleteProduct({ commit, dispatch }, id) {
-        // eslint-disable-next-line no-console 
-        console.log(id)
+    async updateProduct({ commit, dispatch }, update) {
         try {
-            const response = await this.$axios.$delete('/api/v1/product/' + id)
+            const response = await this.$axios.$patch('/api/v1/product', update)
             if (response) {
-                commit('deleteProduct', id)
                 dispatch('getProducts')
+                this.$router.push('/')
             }
         } catch (error) {
             // TODO gracefully handle error

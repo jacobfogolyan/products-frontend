@@ -2,11 +2,17 @@
     <default>
         <div v-if="getProductStore.length" class="container">
             <div class="row">
+                <div class="col-xs-12">
+                    <h1>Create New Product Here</h1>
+                </div>
+            </div>
+            <ProductForm />
+            <div class="row">
                 <ProductCard
                     v-for="(product, index) in getProductStore"
                     :key="index"
                     :product="product"
-                    class="col-xs-4"
+                    class="col-xs-12 col-sm-4"
                 />
             </div>
         </div>
@@ -16,12 +22,14 @@
 <script>
 import ProductCard from '../components/ProductCard.vue'
 import Default from '../layouts/Default.vue'
+import ProductForm from '../components/form/ProductForm.vue'
 
 export default {
     name: "Home",
     components: {
         ProductCard,
-        Default
+        Default,
+        ProductForm
     },
     computed: {
         getProductStore () {
@@ -29,10 +37,11 @@ export default {
         }
     },
     mounted () {
-        this.initialLoad()
+        this.loadProducts()
+        // eslint-disable-next-line no-console
     },
     methods: {
-        async initialLoad () {
+        async loadProducts () {
             await this.$store.dispatch('product/getProducts')
         }
     }
