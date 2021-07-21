@@ -26,7 +26,11 @@ $button-width: 25px;
     width: $button-width;
     height: $button-width;
     position: absolute;
-    top: 0;
-    background-color: #333;
+    top: -20%;
+    right: 0;
+    background-color: #f00;
+    border-radius: $button-width / 2; // TODO deprecated use dart-sass
+    text-align: center;
+    color: white;
 }
 </style>
