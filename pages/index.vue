@@ -1,13 +1,13 @@
 <template>
     <default>
-        <div v-if="getProductStore.length" class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Create New Product Here</h1>
                 </div>
             </div>
             <ProductForm />
-            <div class="row">
+            <div v-if="getProductStore.length" class="row">
                 <ProductCard
                     v-for="(product, index) in getProductStore"
                     :key="index"

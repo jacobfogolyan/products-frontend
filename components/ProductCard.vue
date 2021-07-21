@@ -1,11 +1,12 @@
 <template>
-  <div class="product-card" @click="editProduct">
+  <div class="product-card">
     <div class="content">
-        <div>Name: {{ product.name }}</div>
-        <div>Size: {{ product.size }}</div>
-        <div>Color: {{ product.color }}</div>
-        <div>Material: {{ product.material }}</div>
-        <div>ID: {{ product._id }}</div>
+        <p>Name: {{ product.name }}</p>
+        <p>Size: {{ product.size }}</p>
+        <p>Color: {{ product.color }}</p>
+        <p>Material: {{ product.material }}</p>
+        <p>ID: {{ product._id }}</p>
+        <button @click="editProduct">Edit</button>
     </div>
     <CloseButton :product="product" />
   </div>
@@ -42,7 +43,6 @@ export default {
     margin-top: 2rem;
     position: relative;
     display: block;
-    cursor: pointer;
     .content {
         border-radius: 10px;
         border: 5px solid #333;

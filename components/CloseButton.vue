@@ -32,5 +32,6 @@ $button-width: 25px;
     border-radius: $button-width / 2; // TODO deprecated use dart-sass
     text-align: center;
     color: white;
+    z-index: 200;
 }
 </style>
