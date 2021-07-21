@@ -17,7 +17,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    router: {
+      routes: [
+        {
+          path: '/update',
+          component: 'pages/_updateProduct.vue'
+        }
+      ]
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
