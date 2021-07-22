@@ -38,7 +38,6 @@ export default {
     },
     mounted () {
         this.loadProducts()
-        // eslint-disable-next-line no-console
     },
     methods: {
         async loadProducts () {

@@ -31,8 +31,6 @@ export default {
       editProduct () {
           const { name, size, color, material, _id } = this.product
           this.$router.push({ path: '/update', query: { name, size, color, material, _id } })
-          // eslint-disable-next-line no-console
-          console.log('asdfasdfas')
       }
   }
 };
